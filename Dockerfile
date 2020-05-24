@@ -32,3 +32,4 @@ ENV PATH "${MAVEN_HOME}/bin:${INSTALL4J_HOME}/bin:${PATH}"
 RUN javac -version
 RUN mvn -v
 RUN install4jc -V
+WORKDIR /projects
