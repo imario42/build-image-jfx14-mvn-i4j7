@@ -4,12 +4,9 @@ ENV LANG C.UTF-8
 RUN apt-get update
 RUN apt-get -y install wget
 # prepare environment
-RUN useradd -g root -ms /bin/bash devbot
 RUN mkdir -p /builds
 RUN mkdir -p /projects/work
 RUN mkdir -p /projects/bin
-RUN chmod ug=rwx,o=rx /builds /projects
-RUN chown devbot.root /builds /projects
 WORKDIR /projects/work
 # download development toolchain
 RUN apt-get -y install libasound2 libfreetype6 libxdmcp6 libxext6 libxrender1 libxtst6 libxi6 libxau6 libxdmcp6 libxcb1
@@ -37,4 +34,3 @@ RUN javac -version
 RUN mvn -v
 RUN install4jc -V
 WORKDIR /projects
-USER devbot
