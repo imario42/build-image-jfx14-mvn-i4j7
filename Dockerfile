@@ -16,12 +16,12 @@ RUN apt-get -y install libasound2 libfreetype6 libxdmcp6 libxext6 libxrender1 li
 # Java 8 for tooling
 RUN wget --no-verbose "https://download.bell-sw.com/java/8u252+9/bellsoft-jre8u252+9-linux-amd64.deb"
 # Java 14 for development & build
-RUN wget --no-verbose "https://download.bell-sw.com/java/14.0.1+8/bellsoft-jdk14.0.1+8-linux-amd64-full.deb"
+RUN wget --no-verbose "https://download.bell-sw.com/java/14.0.2+13/bellsoft-jdk14.0.2+13-linux-amd64-full.deb"
 RUN wget --no-verbose "https://downloads.apache.org/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz"
 RUN wget --no-verbose "https://download-gcdn.ej-technologies.com/install4j/install4j_unix_7_0_12.tar.gz"
 # install development toolchain
 RUN dpkg -i "bellsoft-jre8u252+9-linux-amd64.deb"
-RUN dpkg -i "bellsoft-jdk14.0.1+8-linux-amd64-full.deb"
+RUN dpkg -i "bellsoft-jdk14.0.2+13-linux-amd64-full.deb"
 WORKDIR /projects/bin
 RUN tar xzvf "../work/apache-maven-3.6.3-bin.tar.gz"
 RUN tar xzvf "../work/install4j_unix_7_0_12.tar.gz"
