@@ -26,6 +26,9 @@ WORKDIR /projects/bin
 RUN tar xzvf "../work/apache-maven-3.6.3-bin.tar.gz"
 RUN tar xzvf "../work/install4j_unix_7_0_12.tar.gz"
 RUN rm -f "../work/*"
+# copy install4j jres for install bundles
+COPY jres/macosx-amd64-14.0.2.tar.gz /projects/bin/install4j7.0.12/jres/.
+COPY jres/windows-amd64-14.0.2.tar.gz /projects/bin/install4j7.0.12/jres/.
 # setup environment
 ENV JAVA_HOME "/usr/lib/jvm/bellsoft-java14-full-amd64"
 ENV MAVEN_HOME "/projects/bin/apache-maven-3.6.3"
