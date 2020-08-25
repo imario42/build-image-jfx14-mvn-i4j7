@@ -2,6 +2,7 @@ FROM amd64/ubuntu:20.04
 # setup and update system
 ENV LANG C.UTF-8
 RUN apt-get update
+RUN apt-get -y install fonts-dejavu fontconfig
 RUN apt-get -y install wget
 # prepare environment
 RUN useradd -g root -ms /bin/bash devbot
