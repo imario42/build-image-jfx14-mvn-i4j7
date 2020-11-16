@@ -13,7 +13,7 @@ RUN chmod ug=rwx,o=rx /builds /projects /tmp
 RUN chown devbot.root /builds /projects
 WORKDIR /projects/work
 # download development toolchain
-RUN apt-get -y install libasound2 libfreetype6 libxdmcp6 libxext6 libxrender1 libxtst6 libxi6 libxau6 libxdmcp6 libxcb1
+RUN apt-get -y install libasound2 libfreetype6 libxdmcp6 libxext6 libxrender1 libxtst6 libxi6 libxau6 libxdmcp6 libxcb1 libpangoft2
 # Java 8 for tooling
 RUN wget --no-verbose "https://download.bell-sw.com/java/8u252+9/bellsoft-jre8u252+9-linux-amd64.deb"
 # Java 14 for development & build
