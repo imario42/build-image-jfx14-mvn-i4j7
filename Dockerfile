@@ -13,19 +13,28 @@ RUN chmod ug=rwx,o=rx /builds /projects /tmp
 RUN chown devbot.root /builds /projects
 WORKDIR /projects/work
 # download development toolchain
-RUN apt-get -y install libasound2 libfreetype6 libxdmcp6 libxext6 libxrender1 libxtst6 libxi6 libxau6 libxdmcp6 libxcb1 libpangoft2-1.0-0
+RUN apt-get -y install libasound2 libfreetype6 libxdmcp6 libxext6 libxrender1 libxtst6 libxi6 libxau6 libxdmcp6 libxcb1 libpangoft2-1.0-0 xvfb
 # Java 8 for tooling
-RUN wget --no-verbose "https://download.bell-sw.com/java/8u252+9/bellsoft-jre8u252+9-linux-amd64.deb"
-# Java 14 for development & build
+RUN wget --no-verbose "https://download.bell-sw.com/java/8u275+1/bellsoft-jre8u275+1-linux-amd64.deb"
+RUN dpkg -i "bellsoft-jre8u275+1-linux-amd64.deb"
+# Java 14 for development
 RUN wget --no-verbose "https://download.bell-sw.com/java/14.0.2+13/bellsoft-jdk14.0.2+13-linux-amd64-full.deb"
-RUN wget --no-verbose "https://downloads.apache.org/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz"
-RUN wget --no-verbose "https://download-gcdn.ej-technologies.com/install4j/install4j_unix_7_0_12.tar.gz"
-# install development toolchain
-RUN dpkg -i "bellsoft-jre8u252+9-linux-amd64.deb"
 RUN dpkg -i "bellsoft-jdk14.0.2+13-linux-amd64-full.deb"
+## Maven
+WORKDIR /projects/work
+RUN wget --no-verbose "https://downloads.apache.org/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz"
 WORKDIR /projects/bin
 RUN tar xzvf "../work/apache-maven-3.6.3-bin.tar.gz"
+## Install4j
+WORKDIR /projects/work
+RUN wget --no-verbose "https://download-gcdn.ej-technologies.com/install4j/install4j_unix_7_0_12.tar.gz"
+WORKDIR /projects/bin
 RUN tar xzvf "../work/install4j_unix_7_0_12.tar.gz"
+## Chrome Headless
+WORKDIR /projects/work
+RUN wget --no-verbose "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
+RUN dpkg -i "google-chrome-stable_current_amd64.deb"
+# install development toolchain
 RUN rm -f "../work/*"
 # copy install4j jres for install bundles
 COPY jres/macosx-amd64-14.0.2.tar.gz /projects/bin/install4j7.0.12/jres/.
