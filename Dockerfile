@@ -17,7 +17,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libasound2 libfreetype6 li
     libxtst6 libxi6 libxau6 libxdmcp6 libxcb1 libpangoft2-1.0-0 xvfb fonts-liberation \
     libatk-bridge2.0-0 libatk1.0-0 libatspi2.0-0 libcairo2 libcups2 libdbus-1-3 libgbm1 \
     libgdk-pixbuf2.0-0 libgtk-3-0 libnspr4 libnss3 libpangocairo-1.0-0 libxcomposite1  \
-    libxkbcommon0 libxrandr2 xdg-utils
+    libxkbcommon0 libxrandr2 xdg-utils git
 # Java 8 for tooling
 RUN wget --no-verbose "https://download.bell-sw.com/java/8u275+1/bellsoft-jre8u275+1-linux-amd64.deb"
 RUN dpkg -i "bellsoft-jre8u275+1-linux-amd64.deb"
@@ -51,6 +51,7 @@ ENV INSTALL4J_JAVA_HOME "/usr/lib/jvm/bellsoft-java8-runtime-amd64"
 ENV INSTALL4J_HOME "/projects/bin/install4j7.0.12"
 ENV PATH "${MAVEN_HOME}/bin:${INSTALL4J_HOME}/bin:${PATH}"
 # output info
+RUN git --version
 RUN javac -version
 RUN mvn -v
 RUN install4jc -V
