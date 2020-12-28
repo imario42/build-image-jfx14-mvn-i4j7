@@ -3,7 +3,7 @@ FROM amd64/ubuntu:20.04
 ENV LANG C.UTF-8
 RUN apt-get update
 RUN apt-get -y install fonts-dejavu fontconfig
-RUN apt-get -y install wget procps
+RUN apt-get -y install wget procps curl
 # prepare environment
 RUN useradd -g root -ms /bin/bash devbot
 RUN mkdir -p /builds
@@ -51,6 +51,8 @@ ENV INSTALL4J_JAVA_HOME "/usr/lib/jvm/bellsoft-java8-runtime-amd64"
 ENV INSTALL4J_HOME "/projects/bin/install4j7.0.12"
 ENV PATH "${MAVEN_HOME}/bin:${INSTALL4J_HOME}/bin:${PATH}"
 # output info
+RUN wget --version
+RUN curl --version
 RUN git --version
 RUN javac -version
 RUN mvn -v
